@@ -1,0 +1,63 @@
+.movie {
+    height: 560px;
+    padding: 2px;
+    margin-bottom: 5px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    width: 940px;
+    box-shadow: 0 0 22px black;
+    margin-bottom: 19px;
+    display: inline-block;
+    border-bottom: solid 2px white;
+    cursor: pointer;
+    .title{
+        font-weight: bold;
+        font-size: 3em;
+        width: 100%;
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        box-shadow: 0 0 4px black;
+        background-color: black;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        color: white;
+        border-bottom: solid 2px;
+    }
+    .image{
+        width: 100%;
+        text-align: center;
+        height: 90%;
+        background-color: #020202ba;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .info{
+        width: 100%;
+        color: white;
+        background: black;
+        padding: 0px 0px 0px 2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 34%;
+        .synopsis{
+            font-size: 26px;
+            text-align: left;
+            font-style: italic;
+        }
+        .release-date{
+            font-size: 100px;
+            font-style: italic;
+            text-align: left;
+        }
+    }
+}
+
+.expand{
+    height:760px !important;
+    .image{
+        height: 59% !important;
+    }
+}
