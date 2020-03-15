@@ -10,3 +10,8 @@
 2. Changing the dropdown will change the order of movies
 3. localhost:8080/<rank> , eg: localhost:8080/1 will load the movie with rank 1
 4. Clicking on the Movie Card will expand and Synopsis and Rank are visible
+
+
+## SCREEN SHOTS
+![Image of mobile_view](screenshots/mobile_view.PNG)
+![Image of mobile_view_expanded_movie_card](screenshots/mobile_view_expanded_movie_card.PNG)
