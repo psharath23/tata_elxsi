@@ -1,27 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 import "./movie.scss"
-class Movie extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import Description from "./../description/description"
+const Movie = (props) => {
+    // hook to control the visibility of the description
+    const [expand, setExpand] = useState(false)
 
-    render() {
-        const { movie, expand } = this.props
-        const { synopsis = "", title = "", imageUrl = "", releaseDate = "", rank = 0 } = movie
-        console.log("expand id : ", expand)
-        return (
-            <div className={expand == movie.id ? "movie expand" : "movie"}>
-                <div className="title">{rank}. {title}</div>
-                <div className="image">
-                    <img src={imageUrl} atl={`image-${title}`} />
-                </div>
-                {expand === +movie.id && <div className="info">
-                    <div className="synopsis">{synopsis}</div>
-                    <div className="release-date">{releaseDate}</div>
-                </div>}
+    // destructuring the props object to get the movie object
+    const { movie } = props
+
+    // destructuring the movie object
+    const { synopsis = "", title = "", imageUrl = "", releaseDate = "", rank = 0 } = movie
+
+    // deriving the className based on the expand value
+    const className = expand ? "movie expand" : "movie"
+    return (
+        <div className={className} onClick={(evt) => { evt.preventDefault(); setExpand(!expand) }}>
+            <div className="title">{rank}. {title}</div>
+            <div className="image">
+                <img src={imageUrl} atl={`image-${title}`} />
             </div>
-        )
-    }
+            {expand && <Description synopsis={synopsis} releaseDate={releaseDate} />}
+        </div>
+    )
 }
 
 export default Movie

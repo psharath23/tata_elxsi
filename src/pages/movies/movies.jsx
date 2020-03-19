@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom"
 import Movie from "../../components/movie/movie"
 import "./movies.scss"
 import Loader from "./../../components/loader/loader"
+import Filter from "./../../components/filter/filter"
 class Movies extends React.Component {
     constructor(props) {
         super(props);
@@ -24,9 +25,7 @@ class Movies extends React.Component {
         const { lastUpdated } = this.props
         const now = new Date().getTime()
         const diff = Math.abs(now - lastUpdated) / 1000;
-        const diffHours = Math.floor(diff / 3600) % 24;
         const diffMins = Math.floor(diff / 60) % 60;
-        const diffSecs = diff % 60;
         // here we can manipulate the below condition as per our requirement to fetch the latest data after certain time has passed.
         if (diffMins > 59) {
             Service.get("./movies")
@@ -34,7 +33,7 @@ class Movies extends React.Component {
                     this.setState({ loading: false })
                     store.dispatch(MovieAction.storeMovies(response.body))
                 })
-        }else{
+        } else {
             this.setState({ loading: false })
         }
     }
@@ -74,38 +73,28 @@ class Movies extends React.Component {
         const orderByItems = (components.find((comp) => comp.type === "order-select") || { items: [] }).items
         const movies = components.find((comp) => comp.type === "movie-list") || {}
         const { items = [] } = movies
-        const { expand, rank, loading } = this.state
+        const { rank, loading } = this.state
         const filteredItems = items
             .sort((a, b) => this.order(a, b, currentOrderBy))
             .filter((movie) => (rank && !isNaN(rank)) ? +rank === movie.rank : movie)
-        console.log("expand:", expand)
         return (
             <div className="movies-page">
                 <div className="movies-heading">
                     {rank ? `Movie with Rank ${rank}` : "Recommended Movies from the 80's"}
                 </div>
-                {!rank && <div className="movies-orderby">
-                    <select className="order-select" onChange={this.setCurrentOrderBy} value={currentOrderBy}>
-                        <option key={`label-none`} value={"none"}>none</option>
-                        {
-                            orderByItems.map((orderItem) => {
-                                return (
-                                    <option key={`label-${orderItem.valueToOrderBy}`} value={orderItem.valueToOrderBy}>
-                                        {orderItem.label}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select>
-                </div>}
+                {
+                    !rank &&
+                    <Filter
+                        currentOrderBy={currentOrderBy}
+                        orderByItems={orderByItems}
+                        setCurrentOrderBy={this.setCurrentOrderBy}
+                    />
+                }
                 <div className="movies-list">
                     {
-
-                        filteredItems.map((movie) =>
-                            <div id={movie.id} onClick={(evt) => { evt.preventDefault(); this.toggleInfo(movie.id) }} key={`movie-${movie.id}`}>
-                                <Movie movie={movie} expand={expand} key={`movie-${movie.id}-expand-${expand}`} />
-                            </div>
-                        )
+                        filteredItems.map((movie) => (
+                            <Movie movie={movie} key={`movie-${movie.id}`} />
+                        ))
                     }
                     {
                         loading && <Loader contentName="movies" />
