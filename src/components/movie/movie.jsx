@@ -15,7 +15,9 @@ const Movie = (props) => {
     const className = expand ? "movie expand" : "movie"
     return (
         <div className={className} onClick={(evt) => { evt.preventDefault(); setExpand(!expand) }}>
-            <div className="title">{rank}. {title}</div>
+            <div className="movie-header">
+                <div className="title">{rank}. {title}</div>
+            </div>
             <div className="image">
                 <img src={imageUrl} atl={`image-${title}`} />
             </div>

@@ -10,18 +10,26 @@
     display: inline-block;
     border-bottom: solid 2px white;
     cursor: pointer;
-    .title{
-        font-weight: bold;
-        font-size: 3em;
+    animation: animate-collapse 500ms;
+    .movie-header{
+        display: flex;
         width: 100%;
-        text-align: center;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         box-shadow: 0 0 4px black;
         background-color: black;
         border-top-right-radius: 30px;
         border-top-left-radius: 30px;
-        color: white;
         border-bottom: solid 2px;
+        .title{
+            font-weight: bold;
+            font-size: 3em;   
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;            
+            color: white;
+            flex:3
+        }
+        .share{
+            flex: 1;
+        }
     }
     .image{
         width: 100%;
@@ -39,5 +47,24 @@
     height:760px !important;
     .image{
         height: 59% !important;
+    }
+    animation: animate-expand 500ms
+}
+
+@keyframes animate-expand{
+    from{
+        height: 560px;
+    }
+    to{
+        height: 760px;
+    }
+}
+
+@keyframes animate-collapse{
+    to{
+        height: 560px;
+    }
+    from{
+        height: 760px;
     }
 }
