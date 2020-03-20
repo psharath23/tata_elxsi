@@ -14,10 +14,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 
 const loggerMiddleware = store => next => action => {
-    console.group(action.type)
-    console.info('dispatching', action)
     let result = next(action)
-    console.log('next state', store.getState())
     console.groupEnd()
     return result
 }
@@ -34,9 +31,6 @@ const monitorReducersEnhancer = createStore => (
         const newState = reducer(state, action)
         const end = performance.now()
         const diff = round(end - start)
-
-        console.log('reducer process time:', diff)
-
         return newState
     }
 

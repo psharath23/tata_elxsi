@@ -109,7 +109,6 @@ class Movies extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    console.log({ state })
     return ({
         top5movies: state.MoviesReducer.Top5Movies,
         currentOrderBy: state.MoviesReducer.CurrentOrderBy,

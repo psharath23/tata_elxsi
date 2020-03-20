@@ -6,10 +6,8 @@ const initialState = {
 }
 
 const MoviesReducer = (state = initialState, action) => {
-    console.log({ action })
     switch (action.type) {
         case STORE_MOVIES: {
-            console.log("in reducer:", action.payload)
             return {
                 ...state,
                 ...{ Top5Movies: action.payload, LastUpdated: new Date().getTime() }
