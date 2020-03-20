@@ -1,9 +1,12 @@
 # ASSESSMENT
 
 ## HOW TO RUN
-1. git pull from https://github.com/psharath23/tata_elxsi.git
-2. npm install
-3. npm start
+1. Open shell/command promt
+2. Navigate to the directory where you want the code to be cloned
+3. run the command: git clone from https://github.com/psharath23/tata_elxsi.git
+4. go to directory: cd tata_elxsi
+5. npm install
+6. npm start
 
 ## APP FUNCTIONALITY
 1. localhost:8080/ will load all the movies
