@@ -1,4 +1,4 @@
-const top5movies = require("./../../data.json")
+const top5movies = require("./data.json")
 
 class Service {
     // here we are mocking the service as a promise 

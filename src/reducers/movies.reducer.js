@@ -1,8 +1,10 @@
-import { STORE_MOVIES, SET_CURRENT_ORDER } from "../actions/movie.action"
+import { STORE_MOVIES, SET_CURRENT_ORDER, SET_RANK } from "../actions/movie.action"
 const initialState = {
-    Top5Movies: {},
+    Orders: [],
+    Movies: [],
     CurrentOrderBy: "none",
-    LastUpdated: 0
+    LastUpdated: 0,
+    Rank: 0
 }
 
 const MoviesReducer = (state = initialState, action) => {
@@ -10,13 +12,25 @@ const MoviesReducer = (state = initialState, action) => {
         case STORE_MOVIES: {
             return {
                 ...state,
-                ...{ Top5Movies: action.payload, LastUpdated: new Date().getTime() }
+                ...{
+                    LastUpdated: new Date().getTime(),
+                    Movies: action.payload.movies,
+                    Orders: action.payload.orders
+                }
             }
         }
         case SET_CURRENT_ORDER: {
             return {
                 ...state,
                 ...{ CurrentOrderBy: action.payload }
+            }
+        }
+        case SET_RANK: {
+            return {
+                ...state,
+                ...{
+                    Rank: action.payload
+                }
             }
         }
         default:
